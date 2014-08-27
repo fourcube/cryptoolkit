@@ -49,9 +49,12 @@
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
+        <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cryptoolkit</output>
+        </linkerTool>
       </compileType>
       <item path="base64.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -59,18 +62,12 @@
       </item>
       <folder path="TestFiles/f1">
         <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-          <linkerLibItems>
-            <linkerOptionItem>-lcunit</linkerOptionItem>
-          </linkerLibItems>
+          <output>${TESTDIR}/TestFiles/f1</output>         
         </linkerTool>
       </folder>
       <folder path="TestFiles/f2">
         <linkerTool>
-          <output>${TESTDIR}/TestFiles/f2</output>
-          <linkerLibItems>
-            <linkerOptionItem>-lcunit</linkerOptionItem>
-          </linkerLibItems>
+          <output>${TESTDIR}/TestFiles/f2</output>          
         </linkerTool>
       </folder>
       <item path="hex.c" ex="false" tool="0" flavor2="0">
@@ -105,6 +102,9 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cryptoolkit</output>
+        </linkerTool>
       </compileType>
       <item path="base64.h" ex="false" tool="3" flavor2="0">
       </item>

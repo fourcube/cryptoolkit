@@ -71,17 +71,17 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cryptoolkit: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cryptoolkit ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/hex.o: hex.c 
+${OBJECTDIR}/hex.o: nbproject/Makefile-${CND_CONF}.mk hex.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hex.o hex.c
 
-${OBJECTDIR}/lib/tap.o: lib/tap.c 
+${OBJECTDIR}/lib/tap.o: nbproject/Makefile-${CND_CONF}.mk lib/tap.c 
 	${MKDIR} -p ${OBJECTDIR}/lib
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lib/tap.o lib/tap.c
 
-${OBJECTDIR}/main.o: main.c 
+${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
@@ -93,11 +93,11 @@ ${OBJECTDIR}/main.o: main.c
 .build-tests-conf: .build-conf ${TESTFILES}
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/base64_test.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.c}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} -lcunit 
+	${LINK.c}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}
 
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/hex_test.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
-	${LINK.c}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} -lcunit 
+	${LINK.c}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}
 
 
 ${TESTDIR}/tests/base64_test.o: tests/base64_test.c 
