@@ -1,3 +1,7 @@
+/*
+ * Based on https://github.com/superwills/NibbleAndAHalf/blob/master/NibbleAndAHalf/base64.h
+ */
+
 #ifndef BASE64_H
 #define BASE64_H
 
@@ -48,29 +52,7 @@ const static unsigned char decoding_table[]={
   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, //240 
   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, //250 
   0,   0,   0,   0,   0,   0, 
-}; // This array has 255 elements
-
-//assumes little endian
-
-
-void printBits(size_t const size, void const * const ptr)
-{
-    unsigned char *b = (unsigned char*) ptr;
-    unsigned char byte;
-    int i, j;
-
-    for (i=size-1;i>=0;i--)
-    {
-        for (j=7;j>=0;j--)
-        {
-            byte = b[i] & (1<<j);
-            byte >>= j;
-            printf("%u", byte);
-        }
-    }
-    puts("");
-}
-
+}; 
 
 unsigned char *encode_base64(const void* binaryData, int len, size_t *output_length) {
     size_t modulusLen = len % 3 ;
