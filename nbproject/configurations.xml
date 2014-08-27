@@ -40,6 +40,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>lib/tap.c</itemPath>
+    <itemPath>lib/tap.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -72,6 +74,10 @@
         </linkerTool>
       </folder>
       <item path="hex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib/tap.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib/tap.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -121,6 +127,10 @@
         </linkerTool>
       </folder>
       <item path="hex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib/tap.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib/tap.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>

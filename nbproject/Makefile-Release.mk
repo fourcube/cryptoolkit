@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/hex.o \
+	${OBJECTDIR}/lib/tap.o \
 	${OBJECTDIR}/main.o
 
 # Test Directory
@@ -74,6 +75,11 @@ ${OBJECTDIR}/hex.o: hex.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hex.o hex.c
+
+${OBJECTDIR}/lib/tap.o: lib/tap.c 
+	${MKDIR} -p ${OBJECTDIR}/lib
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lib/tap.o lib/tap.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
@@ -117,6 +123,19 @@ ${OBJECTDIR}/hex_nomain.o: ${OBJECTDIR}/hex.o hex.c
 	    $(COMPILE.c) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hex_nomain.o hex.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/hex.o ${OBJECTDIR}/hex_nomain.o;\
+	fi
+
+${OBJECTDIR}/lib/tap_nomain.o: ${OBJECTDIR}/lib/tap.o lib/tap.c 
+	${MKDIR} -p ${OBJECTDIR}/lib
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/lib/tap.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lib/tap_nomain.o lib/tap.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/lib/tap.o ${OBJECTDIR}/lib/tap_nomain.o;\
 	fi
 
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c 
