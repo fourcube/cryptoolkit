@@ -1,49 +1,74 @@
 
-#include <stddef.h>
 #include <string.h>
 #include <stdio.h>
-#include "crypt_error.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
-crypt_error check_valid_hex(const unsigned char* hex) {
+bool check_valid_hex(const unsigned char* hex) {
     if(sizeof(hex) == 0) {
-        return input_empty;
+        return false;
     }
     
     if(hex[0] == '\0') {
-        return input_empty;
+        return false;
     }
     
     if(strlen(hex) % 2 != 0)
     { 
-        return input_not_even;
+        return false;
     }
     
-    return none;
+    return true;
 }
 
-crypt_error hex_to_bytes(unsigned char* hex, unsigned char * result, size_t bufsize) {
+unsigned char* hex_to_bytes(unsigned char* hex, size_t len, size_t *result_len) {
     
-    crypt_error err = check_valid_hex(hex);
+    bool isValid = check_valid_hex(hex);
     
-    if(err != none) {
-        result = "";
-        return err;
+    if(!isValid) {        
+        *result_len = 0;
+        return 0;
     }
-     
-    if(bufsize < strlen(hex) - 1) {        
-        result = "";
-        return result_buffer_too_small;
+    
+    unsigned char *result = (unsigned char*) malloc(len);
+    
+    if(!result) {
+        puts("Cannot allocate memory.");
+        return 0;
     }
     
     unsigned char *pos = hex;    
     size_t count = 0;
     
-    for(;count < sizeof(result); count++) {
+    for(;count < len; count++) {
         // Scan 2 bytes as hex
         sscanf(pos, "%2hhx", &result[count]);
         // Advance in the hex string
         pos += 2 * sizeof(char);
     }
+    
+    *result_len = count;
+    return result;
+}
 
-    return none;
+unsigned char *bytes_to_hex(const void* bytes, size_t len, size_t *result_len) {    
+    unsigned char *input = (unsigned char *) bytes;
+    
+    size_t out_len = len * 2 + 1;
+    unsigned char *result = (unsigned char*) malloc(out_len);
+    
+    if(!result) {
+        puts("Cannot allocate memory.");
+        return 0;
+    }
+    
+    unsigned char* pos = result;
+    size_t count = 0;    
+    for(count = 0; count < out_len; count++) {
+        pos += sprintf(pos, "%02x", input[count]);       
+    }
+    
+    *result_len = out_len;
+    *(result + out_len - 1) = '\0';
+    return result;
 }
